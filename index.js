@@ -3,6 +3,21 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const path = __dirname + '/app/views/';
+const db = require("./app/models/db");
+const dbConfig = require("./app/config/db.config");
+
+db.mongoose
+    .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(() => {
+        console.log("Successfully connect to MongoDB.");
+    })
+    .catch(err => {
+        console.error("Connection error", err);
+        process.exit();
+    });
 
 let corsOptions = {
     origin: "http://localhost:8081"
@@ -14,25 +29,14 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const db = require("./app/models/db");
-db.mongoose
-    .connect(db.url, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-    .then(() => {
-        console.log("Connected to the database!");
-    })
-    .catch(err => {
-        console.log("Cannot connect to the database!", err);
-        process.exit();
-    });
 
 app.get("/", (req, res) => {
     res.sendFile(path+ "index.html");
 });
 
 require("./app/routes/pangolin.route")(app);
+require('./app/routes/auth.routes')(app);
+require('./app/routes/user.routes')(app);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
