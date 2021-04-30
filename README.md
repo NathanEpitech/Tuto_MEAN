@@ -5,4 +5,4 @@ L'objectif est de créer un mini carnet d'adresse pour "Pangolin" sur Express.js
   .(Afficher/Modifier) ses informations (age / famille / race / nourriture)   
   .(Ajouter/Supprimer) en amis un autre "Pangolin" à partir d'une liste des autres Pangolins inscrits.  
 
-Temps passé estimé : 6h30.
+Temps passé estimé : 8h.
