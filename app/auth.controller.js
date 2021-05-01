@@ -1,10 +1,10 @@
 const config = require("./config/auth.config");
 const db = require("./models/db");
 const User = db.user;
-const Role = db.role;
 
 let jwt = require("jsonwebtoken");
 let bcrypt = require("bcryptjs");
+
 
 exports.signup = (req, res) => {
     const user = new User({
@@ -25,7 +25,6 @@ exports.signin = (req, res) => {
     User.findOne({
         username: req.body.username
     })
-        .populate("roles", "-__v")
         .exec((err, user) => {
             if (err) {
                 res.status(500).send({ message: err });
@@ -38,7 +37,7 @@ exports.signin = (req, res) => {
 
             let passwordIsValid = bcrypt.compareSync(
                 req.body.password,
-                user.password
+                User.password
             );
 
             if (!passwordIsValid) {
@@ -53,8 +52,8 @@ exports.signin = (req, res) => {
             });
             res.status(200).send({
                 id: user._id,
-                username: user.username,
-                email: user.email,
+                username: User.username,
+                email: User.email,
                 accessToken: token
             });
         });

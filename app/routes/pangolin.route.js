@@ -10,5 +10,5 @@ module.exports = app => {
 
     Router.get("/:id", pangolin.findOne);
 
-    app.use('/api/tutorials', Router);
+    app.use('/api/pangolins', Router);
 };
