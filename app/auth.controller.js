@@ -5,7 +5,6 @@ const User = db.user;
 let jwt = require("jsonwebtoken");
 let bcrypt = require("bcryptjs");
 
-
 exports.signup = (req, res) => {
     const user = new User({
         username: req.body.username,
@@ -15,11 +14,12 @@ exports.signup = (req, res) => {
 
     user.save((err, user) => {
         if (err) {
-            res.status(500).send({ message: err });
+            res.status(500).send({message: err});
             return;
         }
-        res.send({ message: "User was registered successfully!" });
-});
+        res.send({message: "User was registered successfully!"});
+    })
+};
 
 exports.signin = (req, res) => {
     User.findOne({
@@ -37,7 +37,7 @@ exports.signin = (req, res) => {
 
             let passwordIsValid = bcrypt.compareSync(
                 req.body.password,
-                User.password
+                user.password
             );
 
             if (!passwordIsValid) {
@@ -50,11 +50,12 @@ exports.signin = (req, res) => {
             let token = jwt.sign({ id: user.id }, config.secret, {
                 expiresIn: 86400 // 24 hours
             });
+
             res.status(200).send({
                 id: user._id,
-                username: User.username,
-                email: User.email,
+                username: user.username,
+                email: user.email,
                 accessToken: token
             });
         });
-}};
+};

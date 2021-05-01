@@ -7,6 +7,7 @@ module.exports = mongoose => {
                 race: String,
                 nourriture: String,
                 age: Number,
+                amis: false
             },
             { timestamps: true }
         )

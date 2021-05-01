@@ -6,6 +6,17 @@ const path = __dirname + '/app/views/';
 const db = require("./app/models/db");
 const dbConfig = require("./app/config/db.config");
 
+let corsOptions = {
+    origin: "http://localhost:8081"
+};
+app.use(express.static(path));
+app.use(cors(corsOptions));
+
+app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 db.mongoose
     .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
         useNewUrlParser: true,
@@ -19,24 +30,13 @@ db.mongoose
         process.exit();
     });
 
-let corsOptions = {
-    origin: "http://localhost:8081"
-};
-app.use(express.static(path));
-app.use(cors(corsOptions));
-
-app.use(bodyParser.json());
-
-app.use(bodyParser.urlencoded({ extended: true }));
-
-
 app.get("/", (req, res) => {
     res.sendFile(path+ "index.html");
 });
 
 require("./app/routes/pangolin.route")(app);
-require('./app/routes/auth.routes')(app);
-require('./app/routes/user.routes')(app);
+require('./app/routes/auth.route')(app);
+require('./app/routes/user.route')(app);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
