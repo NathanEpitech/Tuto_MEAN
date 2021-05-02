@@ -1,0 +1,9 @@
+.list {
+  text-align: left;
+  max-width: 750px;
+  margin: auto;
+}
+.btn {
+  background-color: #9b9ef3;
+  color: white;
+}

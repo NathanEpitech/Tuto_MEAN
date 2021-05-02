@@ -1,0 +1,65 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by family name"
+        [(ngModel)]="family"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchFamily()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let pangolins of pangolin; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActivePangolin(pangolins, i)"
+      >
+        {{ pangolins.family }}
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="currentPangolin">
+      <h4>Pangolins :</h4>
+      <div>
+        <label><strong>Family :</strong></label> {{ currentPangolin.family }}
+      </div>
+      <div>
+        <label><strong>Age :</strong></label>
+        {{ currentPangolin.age }}
+      </div>
+      <div>
+        <label><strong>Food :</strong></label>
+        {{ currentPangolin.food}}
+      </div>
+      <div>
+        <label><strong>Race :</strong></label>
+        {{ currentPangolin.race }}
+      </div>
+      <div>
+        <label><strong>Is friends :</strong></label>
+        {{ currentPangolin.friends }}
+      </div>
+
+      <a class="badge badge-warning" routerLink="/pangolins/{{ currentIndex}}">
+        Edit
+      </a>
+    </div>
+
+    <div *ngIf="!currentPangolin">
+      <br />
+    </div>
+  </div>
+</div>

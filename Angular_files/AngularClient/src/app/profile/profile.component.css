@@ -1,0 +1,14 @@
+.container {
+  position: center;
+  width: auto;
+  height: auto;
+  background: #a1b5fa;
+  border-radius: 0% 0% 0% 0% / 0% 0% 0% 0% ;
+  color: #ffffff;
+  box-shadow: 20px 20px rgba(0,0,0,.15);
+  transition: all .4s ease;
+}
+.container:hover {
+  border-radius: 0% 0% 50% 50% / 0% 0% 5% 5%;
+  box-shadow: 10px 10px rgba(0, 0, 0, .25);
+}
