@@ -8,11 +8,11 @@ exports.create = (req, res) => {
     }
 
     const pangolin = new Pangolin({
-        famille: req.body.family,
+        family: req.body.family,
         race: req.body.race,
         age: req.body.age,
-        nourriture: req.body.nourriture,
-        friends: req.body.friends ? req.body.friends : false
+        food: req.body.food,
+        friend: req.body.friend ? req.body.friend : false
     });
 
     pangolin
@@ -28,9 +28,9 @@ exports.create = (req, res) => {
         });
 };
 
-exports.findAll = (req, res) => {s
-    const title = req.query.title;
-    let condition = title ? { title: { $regex: new RegExp(famille), $options: any } } : {};
+exports.findAll = (req, res) => {
+    const family = req.query.family;
+    let condition = family ? { title: { $regex: new RegExp(family), $options: "i" } } : {};
 
     Pangolin.find(condition)
         .then(data => {
@@ -80,45 +80,6 @@ exports.update = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message: "Error updating Tutorial with id=" + id
-            });
-        });
-};
-
-// Delete a Tutorial with the specified id in the request
-exports.delete = (req, res) => {
-    const id = req.params.id;
-
-    Pangolin.findByIdAndRemove(id, { useFindAndModify: false })
-        .then(data => {
-            if (!data) {
-                res.status(404).send({
-                    message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`
-                });
-            } else {
-                res.send({
-                    message: "Tutorial was deleted successfully!"
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: "Could not delete Tutorial with id=" + id
-            });
-        });
-};
-
-// Delete all Tutorials from the database.
-exports.deleteAll = (req, res) => {
-    Pangolin.deleteMany({})
-        .then(data => {
-            res.send({
-                message: `${data.deletedCount} Tutorials were deleted successfully!`
-            });
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while removing all tutorials."
             });
         });
 };

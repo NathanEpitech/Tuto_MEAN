@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "install": "npm install express bcryptjs body-parser cors mongodb mongoose jsonwebtoken",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nathan Dandrimont",
@@ -15,7 +16,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongodb": "^3.6.6",
-    "mongoose": "^5.12.6"
+    "mongoose": "^5.12.7"
   },
   "devDependencies": {
     "jsonwebtoken": "^8.5.1"
