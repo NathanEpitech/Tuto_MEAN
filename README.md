@@ -7,7 +7,7 @@ L'objectif est de créer un mini carnet d'adresse pour "Pangolin" sur Express.js
 
 Temps passé estimé : 17h.  
 Point d'amélioration:  
- . LIER LA LISTE DES PANGOLINS A LA DB POUR PERMETTRE UN AFFICHAGE
+ . LIER LA LISTE DES PANGOLINS A LA DB POUR PERMETTRE UN AFFICHAGE  
  .Bloquer les redirection par url  
  .liste de contact  
  .design général
