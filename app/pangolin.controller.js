@@ -2,7 +2,7 @@ const db = require("./models/db");
 const Pangolin = db.pangolin ;
 
 exports.create = (req, res) => {
-    if (!req.body.title) {
+    if (!req.body.family) {
         res.status(400).send({ message: "Content can not be empty!" });
         return;
     }
@@ -12,9 +12,9 @@ exports.create = (req, res) => {
         race: req.body.race,
         age: req.body.age,
         food: req.body.food,
-        friend: req.body.friend ? req.body.friend : false
+        friend:  false
     });
-
+    console.log('test');
     pangolin
         .save(pangolin)
         .then(data => {
@@ -30,7 +30,7 @@ exports.create = (req, res) => {
 
 exports.findAll = (req, res) => {
     const family = req.query.family;
-    let condition = family ? { title: { $regex: new RegExp(family), $options: "i" } } : {};
+    let condition = family ? { family: { $regex: new RegExp(family), $options: "i" } } : {};
 
     Pangolin.find(condition)
         .then(data => {
@@ -73,18 +73,17 @@ exports.update = (req, res) => {
         .then(data => {
             if (!data) {
                 res.status(404).send({
-                    message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found!`
+                    message: `Cannot update Profile with id=${id}.`
                 });
-            } else res.send({ message: "Tutorial was updated successfully." });
+            } else res.send({ message: "Profile was updated successfully." });
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error updating Tutorial with id=" + id
+                message: "Error updating Profile with id=" + id
             });
         });
 };
 
-// Find all published Tutorials
 exports.findAllPublished = (req, res) => {
     Pangolin.find({ published: true })
         .then(data => {
@@ -93,7 +92,7 @@ exports.findAllPublished = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving tutorials."
+                    err.message || "Some error occurred while retrieving pangolins."
             });
         });
 };

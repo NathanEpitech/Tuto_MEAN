@@ -2,9 +2,9 @@ module.exports = app => {
     const pangolin = require("../pangolin.controller");
     let Router = require("express").Router();
 
-    Router.post("/", pangolin.create);
+    Router.post("/info", pangolin.create);
 
-    Router.get("/", pangolin.findAll);
+    Router.get("/pangolins", pangolin.findAll);
 
     Router.get("/users", pangolin.findAllPublished);
 
