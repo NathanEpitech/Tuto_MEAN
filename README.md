@@ -8,5 +8,5 @@ L'objectif est de créer un mini carnet d'adresse pour "Pangolin" sur Express.js
 Temps passé estimé : 14h.  
 Point d'amélioration:  
  .Bloquer les redirection par url  
- .liste de contact
+ .liste de contact  
  .design général
