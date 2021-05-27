@@ -1,4 +1,4 @@
-# Test_Appartoo  
+# Tuto_Angular
 L'objectif est de créer un mini carnet d'adresse pour "Pangolin" sur Express.js (sous forme d'API) avec un front sur angular &  DB Mongo de préférence.   
 
  - (Inscription/Connexion/Déconnexion) du "Pangolin" par login/mot de passe   
